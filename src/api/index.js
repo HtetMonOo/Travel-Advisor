@@ -16,8 +16,8 @@ const options = {
 
 export const getPlacesData = async() => {
     try{
-        const {data: {data}} = Axios.get(URL, options);
-        return data;
+        const response = await Axios.get(URL, options);
+        return response.data;
     }
     catch(error){
         console.log(error);
