@@ -4,23 +4,11 @@ import React, {useState} from 'react';
 import useStyles from './styles';
 import PlaceDetail from '../PlaceDetail/PlaceDetail'
 
-const List = () => {
+const List = ({places}) => {
 
     const classes = useStyles();
     const [ type, setType ] = useState('restaurants');
     const [ rating, setRating ] = useState();
-
-    const places = [
-        {name: 'cool place'},
-        {name: 'best place'},
-        {name: 'nice place'},
-        {name: 'cool place'},
-        {name: 'best place'},
-        {name: 'nice place'},
-        {name: 'cool place'},
-        {name: 'best place'},
-        {name: 'nice place'}
-    ];
 
     return (
         <div className={classes.container}>
