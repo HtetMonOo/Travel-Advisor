@@ -13,15 +13,17 @@ const App = () => {
     const [ bounds, setBounds ] = useState(null);
 
     useEffect(() => {
+        console.log(bounds);
         navigator.geolocation.getCurrentPosition(({coords: {latitude, longitude}}) => {
             setCoordinates({lat: latitude, lng: longitude});
         });
     }, []);
 
     useEffect(() => {
-        getPlacesData()
+        bounds && getPlacesData(bounds.sw, bounds.ne)
             .then((data) => {
                 setPlaces(data);
+                console.log(data);
             });
     }, [coordinates, bounds]);
 
