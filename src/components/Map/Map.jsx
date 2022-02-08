@@ -6,10 +6,16 @@ import React, { useEffect } from "react";
 
 import useStyles from "./styles";
 
-const Map = ({ setCoordinates, setBounds, coordinates, places }) => {
+const Map = ({
+  setCoordinates,
+  setBounds,
+  coordinates,
+  places,
+  setChildClicked,
+}) => {
   console.log("Map");
   const classes = useStyles();
-  const isDesktop = useMediaQuery("max-width:600px");
+  const isMobile = useMediaQuery("max-width:600px");
 
   return (
     <div className={classes.mapContainer}>
@@ -24,7 +30,9 @@ const Map = ({ setCoordinates, setBounds, coordinates, places }) => {
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ sw: e.bounds.sw, ne: e.bounds.ne });
         }}
-        onChildClick={""}
+        onChildClick={(e) => {
+          setChildClicked(e);
+        }}
       >
         {places.length &&
           places.map((place, i) => (
@@ -34,7 +42,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, places }) => {
               lng={Number(place.longitude)}
               key={i}
             >
-              {isDesktop ? (
+              {isMobile ? (
                 <LocationOutlinedIcon color="primary" fontSize="large" />
               ) : (
                 <Paper elevation={3} className={classes.paper}>
