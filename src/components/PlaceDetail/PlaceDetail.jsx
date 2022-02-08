@@ -17,6 +17,7 @@ import Rating from "@material-ui/lab/Rating";
 import useStyles from "./styles";
 
 const PlaceDetail = ({ place }) => {
+  console.log("Place detail");
   const classes = useStyles();
   return (
     <Card>

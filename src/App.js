@@ -8,6 +8,8 @@ import { getPlacesData } from './api';
 
 const App = () => {
 
+    console.log("App");
+
     const [ places, setPlaces ] = useState([]);
     const [ coordinates, setCoordinates ] = useState({});
     const [ bounds, setBounds ] = useState(null);
@@ -31,7 +33,7 @@ const App = () => {
         <>
             <CssBaseline/>
             <Header/>
-            <Grid container spacing={3} style={{width: '100%'}}>
+            <Grid container spacing={3} style={{width: '100%', marginTop: 'auto'}}>
                 <Grid xs={12} md={4}>
                     <List places={places}/>
                 </Grid>
@@ -40,6 +42,7 @@ const App = () => {
                         setCoordinates = {setCoordinates}
                         setBounds = {setBounds}
                         coordinates = {coordinates}
+                        places = {places}
                     />
                 </Grid>
             </Grid>
