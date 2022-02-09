@@ -17,13 +17,13 @@ const List = ({ places, childClicked, isLoading }) => {
   const classes = useStyles();
   const [type, setType] = useState("restaurants");
   const [rating, setRating] = useState("");
-  const [elrefs, setElrefs] = useState([]);
+  const [elRefs, setElRefs] = useState([]);
 
   useEffect(() => {
     const refs = Array(places?.length)
       .fill()
-      .map((_, i) => elrefs[i] || createRef());
-    setElrefs(refs);
+      .map((_, i) => elRefs[i] || createRef());
+    setElRefs(refs);
   }, [places]);
 
   return (
@@ -56,11 +56,11 @@ const List = ({ places, childClicked, isLoading }) => {
           </FormControl>
           <Grid container spacing={3} className={classes.list}>
             {places?.map((place, i) => (
-              <Grid item key={i} xs={12}>
+              <Grid item key={i} xs={12} ref={elRefs[i]}>
                 <PlaceDetail
                   place={place}
                   selected={Number(childClicked) === i}
-                  refProp={elrefs[i]}
+                  refProp={elRefs[i]}
                 />
               </Grid>
             ))}

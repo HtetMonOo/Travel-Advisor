@@ -20,8 +20,10 @@ const PlaceDetail = ({ place, selected, refProp }) => {
   console.log("Place detail");
   const classes = useStyles();
 
-  if (selected)
+  if (selected) {
     refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <Card>
       <CardMedia

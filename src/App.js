@@ -13,8 +13,8 @@ const App = () => {
     const [ places, setPlaces ] = useState([]);
     const [ coordinates, setCoordinates ] = useState({});
     const [ bounds, setBounds ] = useState(null);
-    const [ clildClicked, setChildClicked ] = useState(null);
-    const [ isLoading, setIsLoading ] = useState(flase);
+    const [ childClicked, setChildClicked ] = useState(null);
+    const [ isLoading, setIsLoading ] = useState(false);
 
     useEffect(() => {
         console.log(bounds);
@@ -39,7 +39,7 @@ const App = () => {
             <Grid container spacing={3} style={{width: '100%', marginTop: 'auto'}}>
                 <Grid xs={12} md={4}>
                     <List places={places}
-                    childClicked={clildClicked}
+                    childClicked={childClicked}
                     isLoading={isLoading} />
                 </Grid>
                 <Grid xs={12} md={8}>

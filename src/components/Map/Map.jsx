@@ -31,6 +31,7 @@ const Map = ({
           setBounds({ sw: e.bounds.sw, ne: e.bounds.ne });
         }}
         onChildClick={(e) => {
+          console.log(e);
           setChildClicked(e);
         }}
       >
