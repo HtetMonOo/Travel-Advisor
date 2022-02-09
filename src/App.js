@@ -8,9 +8,8 @@ import { getPlacesData } from './api';
 
 const App = () => {
 
-    console.log("App");
-
     const [ places, setPlaces ] = useState([]);
+    const [ filteredPlaces, setFilteredPlaces ] = useState([]);
     const [ coordinates, setCoordinates ] = useState({});
     const [ bounds, setBounds ] = useState(null);
     const [ childClicked, setChildClicked ] = useState(null);
@@ -26,10 +25,16 @@ const App = () => {
     }, []);
 
     useEffect(() => {
+        const filteredPlaces = places.filter((place) => place.rating > rating);
+        setFilteredPlaces(filteredPlaces);
+    },[rating]);
+
+    useEffect(() => {
         setIsLoading(true);
         bounds && getPlacesData(type, bounds.sw, bounds.ne)
             .then((data) => {
                 setPlaces(data);
+                setFilteredPlaces([]);
                 setIsLoading(false);
             });
     }, [type, coordinates, bounds]);
@@ -46,14 +51,15 @@ const App = () => {
                     type={type}
                     setType={setType}
                     rating={rating}
-                    setRating={setRating} />
+                    setRating={setRating}
+                 />
                 </Grid>
                 <Grid xs={12} md={8}>
                     <Map 
                         setCoordinates = {setCoordinates}
                         setBounds = {setBounds}
                         coordinates = {coordinates}
-                        places = {places}
+                        places = {filteredPlaces.length ? filteredPlaces : places}
                         setChildClicked = {setChildClicked}
                     />
                 </Grid>
