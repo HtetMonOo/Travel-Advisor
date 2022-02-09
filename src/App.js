@@ -15,6 +15,8 @@ const App = () => {
     const [ bounds, setBounds ] = useState(null);
     const [ childClicked, setChildClicked ] = useState(null);
     const [ isLoading, setIsLoading ] = useState(false);
+    const [type, setType] = useState("restaurants");
+    const [rating, setRating] = useState("");
 
     useEffect(() => {
         console.log(bounds);
@@ -25,12 +27,12 @@ const App = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        bounds && getPlacesData(bounds.sw, bounds.ne)
+        bounds && getPlacesData(type, bounds.sw, bounds.ne)
             .then((data) => {
                 setPlaces(data);
                 setIsLoading(false);
             });
-    }, [coordinates, bounds]);
+    }, [type, coordinates, bounds]);
 
     return (
         <>
@@ -40,7 +42,11 @@ const App = () => {
                 <Grid xs={12} md={4}>
                     <List places={places}
                     childClicked={childClicked}
-                    isLoading={isLoading} />
+                    isLoading={isLoading}
+                    type={type}
+                    setType={setType}
+                    rating={rating}
+                    setRating={setRating} />
                 </Grid>
                 <Grid xs={12} md={8}>
                     <Map 
